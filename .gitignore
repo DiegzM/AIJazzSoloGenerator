@@ -1,6 +1,7 @@
 data/raw/*
 data/processed/*
 backend/.env
+backend/env
 app/.env
 backend/__pycache__/
 *.pyc
