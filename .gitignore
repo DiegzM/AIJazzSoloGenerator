@@ -1,0 +1,11 @@
+data/raw/*
+data/processed/*
+backend/.env
+app/.env
+backend/__pycache__/
+*.pyc
+.pytest_cache/
+__pycache__/
+.DS_Store
+.vscode/
+app/node_modules/
