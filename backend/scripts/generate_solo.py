@@ -57,10 +57,12 @@ def _generate_tokens(model, vocab, encoder_tokens, device, sos_id, eos_id,
     """Generate a jazz solo given chord progression."""
     
     # Convert tokens to ids
+    print("Converting tokens to IDs...")
     encoder_ids = [vocab.get(t, vocab["<PAD>"]) for t in encoder_tokens]
     src = torch.tensor([encoder_ids], dtype=torch.long, device=device)
     
     # Generate
+    print("Generating solo tokens...")
     generated_ids = model.generate(
         src,
         max_len=max_len,

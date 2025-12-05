@@ -236,6 +236,9 @@ class JazzTransformer(nn.Module):
             # Sample
             probs = F.softmax(logits, dim=-1)
             next_token = torch.multinomial(probs, num_samples=1).item()
+
+            # Debug
+            print(f"Step {step}: token={next_token}")
             
             # Force TIME_SHIFT_48 every N notes
             if (force_rest_every is not None and 
