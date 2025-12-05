@@ -7,8 +7,7 @@ from pathlib import Path
 import torch
 from dotenv import load_dotenv
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-BACKEND_ROOT = PROJECT_ROOT / 'backend'
+BACKEND_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BACKEND_ROOT))
 
 load_dotenv(BACKEND_ROOT / '.env')
@@ -21,7 +20,7 @@ MODEL_NAME = "best_model_v3.pt"
 VOCAB_FILE_NAME = "vocab_v3.json"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 checkpoint_path = BACKEND_ROOT / "models" / "jazz_transformer" / MODEL_NAME
-vocab_path = PROJECT_ROOT / "data" / "processed" / VOCAB_FILE_NAME
+vocab_path = BACKEND_ROOT / "data" / "processed" / VOCAB_FILE_NAME
 
 MODEL, VOCAB, SOS_ID, EOS_ID = load_model(checkpoint_path, vocab_path, DEVICE)
 print(f"Model loaded on {DEVICE}!")
