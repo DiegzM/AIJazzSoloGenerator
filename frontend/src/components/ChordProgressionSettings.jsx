@@ -19,6 +19,7 @@ export default function ChordProgressionControls({ beats, setBeats, onError }) {
   });
 
   // Initialize beats
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (beats.length === 0) {
       const arr = [];
