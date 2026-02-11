@@ -1,11 +1,6 @@
 import sys
 from pathlib import Path
 
-# Add project root to Python path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-BACKEND_ROOT = PROJECT_ROOT / 'backend'
-sys.path.insert(0, str(BACKEND_ROOT))
-
 import pandas as pd
 from midiutil import MIDIFile
 
@@ -14,6 +9,8 @@ import ml.preprocessing.cleaner as cleaner
 import ml.preprocessing.feature_extractor as feature_extractor
 from ml.preprocessing.tokenizer import Tokenizer
 from utils.chord_parsers import WeimarChord
+
+from config import PROCESSED_DATA_DIR
 
 data = loader.load()
 data = cleaner.clean(data)
@@ -88,7 +85,7 @@ def create_midi(melid, export=False):
 
         # Write to projectroot/data/processed/test_midi.mid
         if export:
-            with open(PROJECT_ROOT / 'data' / 'processed' / 'test_midi.mid', 'wb') as output_file:
+            with open(PROCESSED_DATA_DIR / 'test_midi.mid', 'wb') as output_file:
                 midi_file.writeFile(output_file)
         
         midi_file.close()

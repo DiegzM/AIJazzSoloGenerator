@@ -7,11 +7,9 @@ import sys
 from pathlib import Path
 import random
 
-UTILS_ROOT = Path(__file__).parent.parent
-sys.path.insert(0, str(UTILS_ROOT))
+from config import UTILS_DIR
 
-
-from chord_parsers import get_chord_scale
+from utils.chord_parsers import get_chord_scale
 
 # Post-process the solo to fit chord scales
 def post_process_solo(solo, beats):

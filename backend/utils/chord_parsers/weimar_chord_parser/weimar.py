@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from config.settings import RAW_DATA_DIR
+from config import RAW_DATA_DIR
 from .normalization import _parse_chord
 from .definitions import QUALITY_INTERVALS, EXTENSION_INTERVALS, PITCH_INTERVALS, PITCH_INTERVALS_ABSOLUTE, ENHARMONIC_FLAT_EQUIVALENTS, CHORD_SCALES
 

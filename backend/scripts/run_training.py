@@ -5,11 +5,6 @@ import os
 import sys
 from pathlib import Path
 
-# Add project root to Python path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-BACKEND_ROOT = PROJECT_ROOT / 'backend'
-sys.path.insert(0, str(BACKEND_ROOT))
-
 import json
 import pickle
 import torch
@@ -19,16 +14,18 @@ from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 from tqdm import tqdm
 from functools import partial
 
+from config import PROCESSED_DATA_DIR, CHECKPOINTS_DIR
+
 from ml.models.transformer import JazzTransformer
 
 # ============== Configuration ==============
 
 class Config:
     # Paths
-    processed_dir = PROJECT_ROOT / "data" / "processed"
+    processed_dir = PROCESSED_DATA_DIR
     vocab_path = processed_dir / "vocab_v3.json"
     tokens_path = processed_dir / "token_pairs.pkl"
-    checkpoint_dir = BACKEND_ROOT / "checkpoints"
+    checkpoint_dir = CHECKPOINTS_DIR
     
     # Model
     d_model = 256

@@ -1,6 +1,6 @@
 import pandas as pd
 from rich.console import Console
-from config.settings import RAW_DATA_DIR
+from backend.settings import RAW_DATA_DIR
 
 console = Console()
 

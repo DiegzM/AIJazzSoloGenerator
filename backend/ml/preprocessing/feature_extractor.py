@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from rich.console import Console
-from config.settings import RAW_DATA_DIR
+from backend.settings import RAW_DATA_DIR
 
 from utils.chord_parsers import WeimarChord, convert_metadata_key
 

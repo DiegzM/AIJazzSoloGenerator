@@ -5,16 +5,12 @@ from midiutil import MIDIFile
 import pickle
 import json
 
-# Add project root to Python path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-BACKEND_ROOT = PROJECT_ROOT / 'backend'
-sys.path.insert(0, str(BACKEND_ROOT))
-
-
 import ml.preprocessing.loader as loader
 import ml.preprocessing.cleaner as cleaner
 import ml.preprocessing.feature_extractor as feature_extractor
 from ml.preprocessing.tokenizer import Tokenizer
+
+from config import PROCESSED_DATA_DIR
 
 VOCAB_FILE_NAME = "vocab_v3.json"
 
@@ -48,7 +44,7 @@ if __name__ == "__main__":
     tokenizer.build_vocab_from_sequences(all_sequences)
 
     # Save tokenizer vocabulary
-    vocab_path = PROJECT_ROOT / "data" / "processed" / VOCAB_FILE_NAME
+    vocab_path = PROCESSED_DATA_DIR / VOCAB_FILE_NAME
     with open(vocab_path, 'w') as f:
         json.dump(tokenizer.vocab, f)
 
@@ -62,7 +58,7 @@ if __name__ == "__main__":
         dec_ids = [tokenizer.token_to_id(tok) for tok in dec_tokens]
         token_pairs.append((enc_ids, dec_ids))
 
-    pairs_path = PROJECT_ROOT / "data" / "processed" / "token_pairs.pkl"
+    pairs_path = PROCESSED_DATA_DIR / "token_pairs.pkl"
     with open(pairs_path, "wb") as f:
         pickle.dump(token_pairs, f)
 
