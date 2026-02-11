@@ -33,6 +33,7 @@ export default function ChordProgressionControls({ beats, setBeats, onError }) {
   }, []);
 
   // Sync bars count with beats array
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (beats.length > 0) {
       setBars(Math.ceil(beats.length / BEATS_PER_BAR));
