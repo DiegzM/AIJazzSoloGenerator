@@ -8,7 +8,6 @@ import MidiProgressBar from "./MidiProgressBar";
 export default function MidiPlayer({ midiData, beats, tempo = 120, fileName = "Jazz_Solo" }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [chordsEnabled, setChordsEnabled] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
@@ -153,7 +152,6 @@ export default function MidiPlayer({ midiData, beats, tempo = 120, fileName = "J
 
   // Play MIDI
   const playMidi = async () => {
-    setIsLoading(true);
 
     try {
       await loadInstruments();
@@ -192,9 +190,6 @@ export default function MidiPlayer({ midiData, beats, tempo = 120, fileName = "J
     catch (error) {
       console.error("Error during MIDI playback:", error);
       setIsPlaying(false);
-    }
-    finally {
-      setIsLoading(false);
     }
   };
 
@@ -235,8 +230,7 @@ export default function MidiPlayer({ midiData, beats, tempo = 120, fileName = "J
   useEffect(() => {
     const loadMidiData = async () => {
       if (!midiData) return;
-
-      setIsLoading(true);
+      
       try {
         const response = await fetch(midiData);
         const arrayBuffer = await response.arrayBuffer();
@@ -252,8 +246,6 @@ export default function MidiPlayer({ midiData, beats, tempo = 120, fileName = "J
         setTotalTime(duration);
       } catch (error) {
         console.error("Error loading MIDI data:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
