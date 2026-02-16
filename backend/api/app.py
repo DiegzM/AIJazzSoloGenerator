@@ -34,13 +34,13 @@ def create_app():
 
 
     # Health endpoint to check if server is running and model is loaded
-    @app.get("/health")
+    @app.get("/api/health")
     def health():
         return {"status": "ok", "device": str(DEVICE)}
 
 
     # Generate endpoint that returns generated MIDI file
-    @app.post("/generate")
+    @app.post("/api/generate")
     def generate():
         print("Received request for solo generation")
         beat_chord_data = request.json

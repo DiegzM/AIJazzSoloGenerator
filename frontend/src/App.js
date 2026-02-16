@@ -44,7 +44,7 @@ function App() {
     console.log("Sending:", JSON.stringify(beatChordData, null, 2));
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/generate`, {
+      const response = await fetch('api/generate', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
